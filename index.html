@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Studio</title>
+  <link rel="stylesheet" href="src/static/style.css" />
+  <link rel="icon" type="image/svg+xml" href="src/static/favicon.svg">
+</head>
+<body>
+
+<div class="app">
+  <header class="header">
+    <div class="header__icon">
+      <img src="src/static/favicon.svg" alt="QR Studio" class="header__icon" />
+    </div>
+    <div class="header__brand">
+      <h1>QR Studio</h1>
+      <span class="header__tag">Code Generator</span>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <section class="panel">
+      <h2 class="panel__title">Content</h2>
+      <div class="field">
+        <label for="qrData">Text or URL</label>
+        <textarea id="qrData" placeholder="https://example.com">https://example.com</textarea>
+      </div>
+      <div class="field">
+        <label for="ecLevel">Error Correction</label>
+        <div class="select-wrap">
+          <select id="ecLevel">
+            <option value="L">L - Low (7%)</option>
+            <option value="M" selected>M - Medium (15%)</option>
+            <option value="Q">Q - Quartile (25%)</option>
+            <option value="H">H - High (30%)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="panel">
+      <h2 class="panel__title">Dimensions</h2>
+      <div class="field">
+        <label>Resolution <span class="label-val" id="sizeVal">320px</span></label>
+        <input type="range" id="qrSize" min="150" max="2000" value="320" step="10" />
+      </div>
+      <div class="field">
+        <label>Quiet Zone <span class="label-val" id="marginVal">16</span></label>
+        <input type="range" id="qrMargin" min="0" max="80" value="16" step="2" />
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="panel">
+      <h2 class="panel__title">Dot Style</h2>
+      <div class="style-grid" id="dotStyleGrid">
+        <button class="style-btn active" data-val="square">Square</button>
+        <button class="style-btn" data-val="dots">Dots</button>
+        <button class="style-btn" data-val="rounded">Rounded</button>
+        <button class="style-btn" data-val="extra-rounded">Pill</button>
+        <button class="style-btn" data-val="classy">Classy</button>
+        <button class="style-btn" data-val="classy-rounded">Classy+</button>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="panel">
+      <h2 class="panel__title">Corner Square</h2>
+      <div class="style-grid" id="cornerSquareGrid">
+        <button class="style-btn active" data-val="square">Square</button>
+        <button class="style-btn" data-val="dot">Dot</button>
+        <button class="style-btn" data-val="extra-rounded">Rounded</button>
+      </div>
+      <h2 class="panel__title" style="margin-top:12px;">Corner Dot</h2>
+      <div class="style-grid" id="cornerDotGrid">
+        <button class="style-btn active" data-val="square">Square</button>
+        <button class="style-btn" data-val="dot">Dot</button>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="panel">
+      <h2 class="panel__title">Colors</h2>
+
+      <div class="field">
+        <label>Dots</label>
+        <div class="color-row">
+          <div class="color-swatch">
+            <input type="color" id="dotColor" value="#1A1714" />
+            <span>Main</span>
+          </div>
+          <div class="gradient-toggle-area">
+            <div class="toggle-row">
+              <label class="toggle" title="Enable gradient">
+                <input type="checkbox" id="gradientToggle" />
+                <span class="toggle-track"></span>
+              </label>
+              <span class="toggle-label">Gradient</span>
+            </div>
+            <div id="gradientExtra" class="gradient-extra hidden">
+              <div class="color-swatch">
+                <input type="color" id="dotColor2" value="#2D6A4F" />
+                <span>End</span>
+              </div>
+              <div class="select-wrap flex1">
+                <select id="gradientType">
+                  <option value="linear">Linear</option>
+                  <option value="radial">Radial</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Background &amp; Corners</label>
+        <div class="color-row">
+          <div class="color-swatch">
+            <input type="color" id="bgColor" value="#FFFFFF" />
+            <span>BG</span>
+          </div>
+          <div class="color-swatch">
+            <input type="color" id="cornerSqColor" value="#1A1714" />
+            <span>Corner</span>
+          </div>
+          <div class="color-swatch">
+            <input type="color" id="cornerDotColor" value="#2D6A4F" />
+            <span>Dot</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="panel">
+      <h2 class="panel__title">Center Image <em style="font-weight:400;">(optional)</em></h2>
+      <div class="upload-zone">
+        <input type="file" id="logoInput" accept="image/*" />
+        <div class="upload-zone__icon">⊕</div>
+        <div class="upload-zone__text">Drop an image or click to browse</div>
+      </div>
+      <div id="logoInfo" class="logo-info hidden">
+        <span id="logoFileName" class="logo-filename"></span>
+        <button id="clearLogo" class="clear-btn">✕ Remove</button>
+      </div>
+      <div id="logoSizeField" class="field hidden" style="margin-top:10px;">
+        <label>Logo size <span class="label-val" id="logoSizeVal">20%</span></label>
+        <input type="range" id="logoSize" min="0.05" max="0.40" value="0.20" step="0.01" />
+      </div>
+    </section>
+
+  </aside>
+
+  <main class="preview">
+    <div class="qr-viewport">
+      <div class="qr-card">
+        <div id="qrCanvas"></div>
+      </div>
+    </div>
+
+    <div class="export-bar">
+      <div class="fmt-tabs" id="fmtTabs">
+        <button class="fmt-tab active" data-fmt="png">PNG</button>
+        <button class="fmt-tab" data-fmt="svg">SVG</button>
+        <button class="fmt-tab" data-fmt="jpeg">JPEG</button>
+        <button class="fmt-tab" data-fmt="webp">WebP</button>
+      </div>
+      <div class="actions">
+        <button class="btn btn--ghost" id="copyBtn">⎘ Copy</button>
+        <button class="btn btn--primary" id="downloadBtn">↓ Download</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="src/vendor/qr-code-styling.js"></script>
+
+<script src="src/modules.js"></script>
+
+</body>
+</html>
