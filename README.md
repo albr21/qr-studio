@@ -1,10 +1,6 @@
-# <project-name>
+# QR Studio
 
-<!-- A brief description of the project. -->
-
-## Usage
-
-<!-- Provide instructions on how to use the project, including code examples if applicable. -->
+Simple QR code generator web app, only frontend using qr-code-styling library.
 
 ## Contributing
 

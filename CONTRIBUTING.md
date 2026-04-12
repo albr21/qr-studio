@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for considering contributing to **<project-name>**! Here’s how you can help:
+Thanks for considering contributing to **QR Studio**! Here’s how you can help:
 
 ## How to Contribute
 1. **Fork** the repository
@@ -18,14 +18,8 @@ Thanks for considering contributing to **<project-name>**! Here’s how you can 
 ## Code Style
 - Ensure that your code passes existing tests and includes new ones for new features or fixes
 
-## Development Environment
-<!-- Provide instructions on how to set up a development environment for the project. -->
-
 ## File Architecture
-<!-- Provide an overview of the file architecture of the project, explaining the purpose of key files and directories. -->
-
-## Testing
-<!-- Describe the testing framework used and how to run tests. -->
+Source code is organized in the `src` directory.
 
 ## License
 
