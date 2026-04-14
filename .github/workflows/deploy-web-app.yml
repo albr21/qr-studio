@@ -1,4 +1,4 @@
-name: 🤖 Deploy Web App
+name: 🕹️ Deploy Web App
 
 run-name: ${{ github.actor }} is deploying the web app 🚀
 
@@ -29,7 +29,7 @@ jobs:
 
       - name: Build
         run: |-
-          cp -r src generated
+          cp -r src generated/src
           cp index.html generated
         shell: bash
 
